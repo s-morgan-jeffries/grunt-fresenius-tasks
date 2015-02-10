@@ -791,4 +791,5 @@ module.exports = function(grunt, projectConfig) {
     grunt.task.run(buildTasks);
   });
 
+  grunt.registerTask('default', ['develop']);
 };
