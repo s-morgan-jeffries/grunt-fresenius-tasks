@@ -12,6 +12,28 @@ module.exports = function(grunt) {
 
   // Project configuration.
   grunt.initConfig({
+    bump: {
+      options: {
+        files: ['package.json'],
+        updateConfigs: [],
+        commit: true,
+        commitMessage: 'Release v%VERSION%',
+        commitFiles: ['bower.json', 'package.json'],
+        createTag: true,
+        tagName: 'v%VERSION%',
+        tagMessage: 'Version %VERSION%',
+        // NEVER change this.
+        push: false,
+        pushTo: 'upstream',
+        gitDescribeOptions: '--tags --always --abbrev=1 --dirty=-d'
+      }
+    },
+
+    // Before generating any new files, remove any previously-created files.
+    clean: {
+      tests: ['tmp']
+    },
+
     jshint: {
       all: [
         'Gruntfile.js',
@@ -21,11 +43,6 @@ module.exports = function(grunt) {
       options: {
         jshintrc: '.jshintrc'
       }
-    },
-
-    // Before generating any new files, remove any previously-created files.
-    clean: {
-      tests: ['tmp']
     },
 
     // Configuration to be run (and then tested).
